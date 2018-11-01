@@ -1,6 +1,7 @@
 package com.example.wingsuncheung.baker.ui;
 
 import android.content.Intent;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,8 @@ public class HomeActivity extends AppCompatActivity implements HomeListFragment.
     private ViewModelFactory viewModelFactory;
     private HomeActivityViewModel viewModel;
     private FragmentManager fragmentManager;
+
+    private Parcelable mock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +75,21 @@ public class HomeActivity extends AppCompatActivity implements HomeListFragment.
     @Override
     public void onRecipeSelected(Bake bake) {
 
+
+
         Intent intent = new Intent(this, DetailActivity.class);
         Parcelable wrappedBake = Parcels.wrap(bake);
+
+        mock = wrappedBake;
 
         intent.putExtra("bake", wrappedBake);
 
         startActivity(intent);
 
+    }
+
+    public Parcelable getMock() {
+        return mock;
     }
 }
 
